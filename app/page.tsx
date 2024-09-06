@@ -1,16 +1,19 @@
 import Hero from "@/components/hero";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
+import { authOptions } from "./lib/auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+
+  const session = await getServerSession(authOptions);
+
+  if(session){
+    redirect("/chat")
+  }
   return (
     <div className="max-w-2xl px-5 md:px-10 2xl:px-36 mx-auto">
       <Hero/>
     </div>
-
-    // <div className="max-w-xl mx-auto border rounded-lg p-10 mt-32">
-    //   <h1 className="text-4xl font-semibold text-center">Login to use chat</h1>
-
-    //   <div className="mt-8"></div>
-    // </div>
   );
 }
