@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../lib/auth'
 import { redirect } from 'next/navigation'
+import Form from './[components]/form'
 
 const page = async () => {
 
@@ -13,7 +14,9 @@ const page = async () => {
     }
 
     return (
-        <div className="h-screen flex flex-col bg-gradient-to-br from-gray-200 to-gray-50"></div>
+        <div className="h-screen flex flex-col bg-gray-200">
+            <Form/>
+        </div>
     )
 }
 
