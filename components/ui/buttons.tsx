@@ -55,10 +55,20 @@ export const LogoutButton = () => {
 }
 
 
+
 export const LoginButton = () => {
     return (
-        <button onClick={() => signIn()} className="flex items-center justify-center gap-2 rounded-lg bg-fuchsia-700 px-8 py-3 text-center text-sm font-semibold text-white ring-fuchsia-500 transition duration-100 hover:bg-fuchsia-900 md:text-base">
+        <button onClick={() => signIn("github")} className="flex items-center justify-center gap-2 rounded-lg bg-fuchsia-700 px-8 py-3 text-center text-sm font-semibold text-white ring-fuchsia-500 transition duration-100 hover:bg-fuchsia-900 md:text-base">
             Login
+        </button>
+    )
+}
+
+
+export const MainLogin = () => {
+    return (
+        <button onClick={() => signIn()} className="w-full flex items-center justify-center gap-2 rounded-lg bg-fuchsia-700 px-8 py-3 text-center text-sm font-semibold text-white ring-fuchsia-500 transition duration-100 hover:bg-fuchsia-900 md:text-base">
+            Login with Github
         </button>
     )
 }
