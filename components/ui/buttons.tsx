@@ -5,13 +5,16 @@ import { signIn, signOut } from "next-auth/react"
 
 import { ButtonHTMLAttributes, FC } from "react";
 
+import { MouseEventHandler } from "react";
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   size?: "small" | "medium" | "large";
   variant?: "primary" | "secondary" | "danger";
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export const Button: FC<ButtonProps> = ({ label, size = "medium", variant = "primary", ...props }) => {
+export const Button: FC<ButtonProps> = ({ label, size = "medium", variant = "primary", onClick, ...props }) => {
   const baseClasses = "rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
   
   const sizeClasses = {
@@ -28,6 +31,7 @@ export const Button: FC<ButtonProps> = ({ label, size = "medium", variant = "pri
 
   return (
     <button
+      onClick={() => {}}
       className={`${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]}`}
       {...props}
     >
