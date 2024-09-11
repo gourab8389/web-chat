@@ -19,16 +19,22 @@ export default function ChatComponent({ data }: iAppProps) {
 
     const messageEndRef = useRef<HTMLInputElement>(null);
 
-    var pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as string, {
-        cluster: 'ap2'
-      });
-
-      var channel = pusher.subscribe('chat');
-    channel.bind('hello', function(data: any) {
-      const parsedComments = JSON.parse(data.message);
-
-      setTotalComments((prev)=> [...prev, parsedComments]);
-    });
+    useEffect(()=>{
+        var pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as string, {
+            cluster: 'ap2'
+          });
+    
+          var channel = pusher.subscribe('chat');
+        channel.bind('hello', function(data: any) {
+          const parsedComments = JSON.parse(data.message);
+    
+          setTotalComments((prev)=> [...prev, parsedComments]);
+        });
+        
+        return () => {
+            pusher.unsubscribe("chat");
+        }
+    },[])
 
     const scrollToBottom = () => {
         messageEndRef.current?.scrollIntoView({
