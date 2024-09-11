@@ -53,7 +53,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
- 
+  Message       Message[]
   @@map("users")
 }
  
@@ -64,4 +64,15 @@ model VerificationToken {
  
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+
+model Message {
+  id String @id @default(uuid())
+  message String
+  User User? @relation(fields: [email], references: [email])
+  email String?
+
+  ceratedAt DateTime @default(now())
+  @@map("messages")
 }
