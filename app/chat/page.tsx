@@ -26,6 +26,9 @@ async function getData() {
     return data;
 }
 
+
+export const dynamic = "force-dynamic"
+
 const ChatHomePage = async () => {
 
     const data = await getData();
